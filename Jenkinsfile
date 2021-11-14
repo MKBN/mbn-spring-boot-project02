@@ -7,8 +7,19 @@ pipeline {
   }
   stages {
     stage('SourceCode') {
-      steps {
-        git(url: 'https://github.com/MKBN/mbn-spring-boot-project02.git', branch: 'master', poll: true)
+      parallel {
+        stage('SourceCode') {
+          steps {
+            git(url: 'https://github.com/MKBN/mbn-spring-boot-project02.git', branch: 'master', poll: true)
+          }
+        }
+
+        stage('Maven') {
+          steps {
+            tool(name: 'Maven', type: 'slave1')
+          }
+        }
+
       }
     }
 
