@@ -13,19 +13,8 @@ pipeline {
     }
 
     stage('compile') {
-      parallel {
-        stage('compile') {
-          steps {
-            sh 'mvn compile'
-          }
-        }
-
-        stage('Message') {
-          steps {
-            echo 'Compiling the Code '
-          }
-        }
-
+      steps {
+        sh 'mvn compile'
       }
     }
 
